@@ -1,0 +1,123 @@
+.home__featured {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.home__stats {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(247, 147, 30, 0.05) 100%);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 12px;
+  background: var(--secondary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255, 107, 53, 0.2);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ff6b35;
+  margin: 0 0 0.5rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.home__categories {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.home__testimonials {
+  padding: 4rem 0;
+  background: var(--secondary);
+}
+
+.home__cta {
+  padding: 4rem 0;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: #fff;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(255, 107, 53, 0.3);
+}
+
+.cta-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-card p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-card a {
+  display: inline-block;
+}
+
+.cta-card .btn {
+  background: #fff !important;
+  color: #ff6b35 !important;
+}
+
+.cta-card .btn:hover {
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.home__newsletter {
+  padding: 4rem 0;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+  }
+
+  .cta-card {
+    padding: 2rem 1rem;
+  }
+
+  .cta-card h2 {
+    font-size: 1.5rem;
+  }
+}

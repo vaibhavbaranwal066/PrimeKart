@@ -1,0 +1,44 @@
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.rating--sm {
+  gap: 0.1rem;
+}
+
+.rating--lg {
+  gap: 0.35rem;
+}
+
+.rating svg {
+  transition: all 0.2s ease;
+}
+
+.rating svg.filled {
+  fill: #ffc107;
+  color: #ffc107;
+  stroke: #ffc107;
+}
+
+.rating svg.empty {
+  fill: none;
+  color: var(--border-color);
+  stroke: var(--border-color);
+}
+
+.rating--interactive svg {
+  cursor: pointer;
+}
+
+.rating--interactive svg:hover {
+  transform: scale(1.2);
+  color: #ffc107;
+}
+
+.rating__count {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-left: 0.5rem;
+}
