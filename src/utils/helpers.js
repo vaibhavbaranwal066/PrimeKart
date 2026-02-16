@@ -29,7 +29,7 @@ export const filterProducts = (products, filters) => {
     }
 
     // Price filter
-    if (product.price < filters.priceRange[0] || product.price > filters.priceRange[1]) {
+    if (filters.priceRange && (product.price < filters.priceRange[0] || product.price > filters.priceRange[1])) {
       return false;
     }
 
@@ -39,12 +39,12 @@ export const filterProducts = (products, filters) => {
     }
 
     // Sizes filter
-    if (filters.sizes.length > 0 && !filters.sizes.some(size => product.details.sizes.includes(size))) {
+    if (filters.sizes && filters.sizes.length > 0 && !filters.sizes.some(size => product.details.sizes.includes(size))) {
       return false;
     }
 
     // Colors filter
-    if (filters.colors.length > 0 && !filters.colors.some(color => product.details.colors.includes(color))) {
+    if (filters.colors && filters.colors.length > 0 && !filters.colors.some(color => product.details.colors.includes(color))) {
       return false;
     }
 

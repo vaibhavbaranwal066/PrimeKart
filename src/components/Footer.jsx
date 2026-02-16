@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer__content">
           {/* Brand */}
           <div className="footer__section">
-            <h3 className="footer__title">Premium</h3>
+            <h3 className="footer__title">PrimeKart</h3>
             <p className="footer__description">
               Experience ultra-modern shopping with premium products and exceptional service.
             </p>
