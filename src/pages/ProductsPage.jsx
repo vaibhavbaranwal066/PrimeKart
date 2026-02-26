@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { ProductCard } from '../components';
@@ -7,10 +8,19 @@ import { filterProducts, sortProducts, searchProducts } from '../utils/helpers';
 import './ProductsPage.css';
 
 const ProductsPage = () => {
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [sortBy, setSortBy] = useState('popularity');
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Update searchQuery from URL parameters
+  useEffect(() => {
+    const urlSearch = searchParams.get('search');
+    if (urlSearch) {
+      setSearchQuery(urlSearch);
+    }
+  }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
     let result = products;

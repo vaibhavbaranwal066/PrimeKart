@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Heart, User, Menu, X, Sun, Moon, Search } from 'lucide-react';
 import { useCartStore, useThemeStore, useWishlistStore } from '../store';
@@ -7,8 +7,10 @@ import { useScrollPosition } from '../hooks';
 import './Navbar.css';
 
 const Navbar = ({ onCartClick, onSearchOpen }) => {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
   const { items: cartItems } = useCartStore();
   const { items: wishlistItems } = useWishlistStore();
   const { theme, toggleTheme } = useThemeStore();
@@ -16,6 +18,24 @@ const Navbar = ({ onCartClick, onSearchOpen }) => {
 
   const cartCount = cartItems.length;
   const wishlistCount = wishlistItems.length;
+
+  const handleSearch = (query) => {
+    if (query.trim()) {
+      onSearchOpen?.(query);
+      setSearchValue('');
+      setSearchOpen(false);
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  const handleSearchKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(searchValue);
+    }
+  };
 
   const navItems = [
     { label: 'Home', path: '/' },
@@ -131,7 +151,9 @@ const Navbar = ({ onCartClick, onSearchOpen }) => {
             placeholder="Search products..."
             className="navbar__search-input"
             autoFocus
-            onChange={(e) => onSearchOpen?.(e.target.value)}
+            value={searchValue}
+            onChange={handleSearchInputChange}
+            onKeyDown={handleSearchKeyDown}
           />
         </motion.div>
       )}

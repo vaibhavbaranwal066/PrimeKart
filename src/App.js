@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { useThemeStore } from './store';
 import { Navbar, Footer } from './components';
@@ -16,9 +16,59 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 import WishlistPage from './pages/WishlistPage';
+import CategoriesPage from './pages/CategoriesPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import './App.css';
+
+const AppContent = ({ isCartOpen, setIsCartOpen, quickViewProduct, setQuickViewProduct, theme }) => {
+  const navigate = useNavigate();
+
+  const handleSearch = (searchQuery) => {
+    if (searchQuery.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
+  return (
+    <div className={`app app--${theme}`}>
+      <Navbar
+        onCartClick={() => setIsCartOpen(true)}
+        onSearchOpen={handleSearch}
+      />
+      
+      <main className="app__main">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/wishlist" element={<WishlistPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
+
+      <Footer />
+
+      {/* Sidebar Components */}
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <QuickViewModal
+        product={quickViewProduct}
+        onClose={() => setQuickViewProduct(null)}
+        onAddToCart={() => setIsCartOpen(true)}
+      />
+    </div>
+  );
+};
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -42,36 +92,13 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <div className={`app app--${theme}`}>
-          <Navbar
-            onCartClick={() => setIsCartOpen(true)}
-          />
-          
-          <main className="app__main">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/products/:id" element={<ProductDetailPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </main>
-
-          <Footer />
-
-          {/* Sidebar Components */}
-          <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
-          <QuickViewModal
-            product={quickViewProduct}
-            onClose={() => setQuickViewProduct(null)}
-            onAddToCart={() => setIsCartOpen(true)}
-          />
-        </div>
+        <AppContent
+          isCartOpen={isCartOpen}
+          setIsCartOpen={setIsCartOpen}
+          quickViewProduct={quickViewProduct}
+          setQuickViewProduct={setQuickViewProduct}
+          theme={theme}
+        />
       </BrowserRouter>
     </HelmetProvider>
   );

@@ -63,11 +63,11 @@ const Footer = () => {
               </div>
               <div className="footer__contact-item">
                 <Phone size={18} />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 9999988888</span>
               </div>
               <div className="footer__contact-item">
                 <MapPin size={18} />
-                <span>123 Premium St, City, State</span>
+                <span>123 Main Street, Mumbai, India</span>
               </div>
             </div>
           </div>

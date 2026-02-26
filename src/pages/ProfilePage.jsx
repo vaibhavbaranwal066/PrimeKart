@@ -11,8 +11,8 @@ const ProfilePage = () => {
           <div className="profile-content">
             <div className="profile-section">
               <h2>Account Information</h2>
-              <p>Name: John Doe</p>
-              <p>Email: john@example.com</p>
+              <p>Name: Vaibhav Baranwal</p>
+              <p>Email: vaibhav@example.com</p>
               <p>Member Since: January 2024</p>
             </div>
             <div className="profile-section">
