@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/PrimeKart/static/css/main.1e3a289c.css",
+    "main.js": "/PrimeKart/static/js/main.83230b38.js",
+    "index.html": "/PrimeKart/index.html",
+    "main.1e3a289c.css.map": "/PrimeKart/static/css/main.1e3a289c.css.map",
+    "main.83230b38.js.map": "/PrimeKart/static/js/main.83230b38.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e3a289c.css",
+    "static/js/main.83230b38.js"
+  ]
+}
